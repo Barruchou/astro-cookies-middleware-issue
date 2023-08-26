@@ -6,9 +6,8 @@ If you use an `Astro.cookies.set(...)` and a middleware that rewrites the respon
 export const onRequest = async (context, next) => {
     const response = await next();
     const html = await response.text();
-    const redactedHtml = html.replaceAll("PRIVATE INFO", "REDACTED");
 
-    return new Response(redactedHtml, {
+    return new Response(html, {
         status: 200,
         headers: response.headers
     });
